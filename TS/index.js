@@ -242,3 +242,68 @@ for (let i = 0; i < 3; i++) {
 //eventListener 부착
 let button = document.querySelector("#button");
 button === null || button === void 0 ? void 0 : button.addEventListener("click", function () { });
+//constructor
+class Person {
+    constructor(a) {
+        this.name = a;
+    }
+    Fun(a) {
+        console.log("숫자" + a); //함수도 넣어서 사용가능
+    }
+}
+let 사람1 = new Person("kim");
+let 사람2 = new Person("lee");
+console.log(사람1.Fun(123));
+//--------------------------------------------------
+class Car {
+    constructor(a, b) {
+        this.model = a;
+        this.pricd = b;
+    }
+    tax() {
+        return this.pricd / 10;
+    }
+}
+let car1 = new Car("소나타", 3000);
+console.log(car1);
+console.log(car1.tax());
+//--------------------------------------------------
+class Word {
+    constructor(...prams) {
+        let num = [];
+        let str = [];
+        prams.forEach((b) => {
+            if (typeof b === "string") {
+                str.push(b);
+            }
+            else {
+                num.push(b);
+            }
+        });
+        this.num = num;
+        this.str = str;
+    }
+}
+let obj = new Word("kim", 3, 5, "park");
+console.log(obj.num);
+console.log(obj.str);
+let square = { color: "red", width: 100 };
+let student = { names: "kim" };
+let Teacher = { names: "kim", age: 20 };
+let product = {
+    brand: "Samsung",
+    serialNumber: 1360,
+    model: ["TV", "phone"],
+};
+let basket = [
+    { product: "청소기", price: 7000, card: false },
+    { product: "삼다수", price: 800 },
+];
+let ObjectPrac = {
+    plus(a, b) {
+        return a + b;
+    },
+    minus(a, b) {
+        return a - b;
+    },
+};

@@ -358,3 +358,128 @@ for (let i = 0; i < 3; i++) {
 //eventListener 부착
 let button = document.querySelector("#button");
 button?.addEventListener("click", function () {});
+
+//constructor
+class Person {
+  name: string; // typeScript에서 constructor()는 필드값에 값이 미리 선언되어있어야 사용가능하다.
+  constructor(a: string) {
+    this.name = a;
+  }
+  Fun(a: number) {
+    console.log("숫자" + a); //함수도 넣어서 사용가능
+  }
+}
+let 사람1 = new Person("kim");
+let 사람2 = new Person("lee");
+
+console.log(사람1.Fun(123));
+//--------------------------------------------------
+class Car {
+  model: string;
+  pricd: number;
+  constructor(a: string, b: number) {
+    this.model = a;
+    this.pricd = b;
+  }
+  tax() {
+    return this.pricd / 10;
+  }
+}
+let car1 = new Car("소나타", 3000);
+console.log(car1);
+console.log(car1.tax());
+
+//--------------------------------------------------
+class Word {
+  num;
+  str;
+  constructor(...prams) {
+    let num: number[] = [];
+    let str: string[] = [];
+
+    prams.forEach((b) => {
+      if (typeof b === "string") {
+        str.push(b);
+      } else {
+        num.push(b);
+      }
+    });
+    this.num = num;
+    this.str = str;
+  }
+}
+let obj = new Word("kim", 3, 5, "park");
+console.log(obj.num);
+console.log(obj.str);
+
+//--------------------------------------------------
+//interface
+type Square1 = { color: string; width: number };
+//type 선언해서 타입지정할수있고,
+interface Square2 {
+  // interface를 사용해서 타입지정이가능하다.
+  color: string; // interface사용하경우 '=' 등호는 생략한다.
+  width: number;
+}
+let square: Square = { color: "red", width: 100 };
+
+//interface 장점:extends로 복사가 가능하다.
+interface School {
+  names: string;
+}
+interface School2 extends School {
+  age: number;
+}
+let student: School = { names: "kim" };
+let Teacher: School2 = { names: "kim", age: 20 };
+
+//intersection type
+//type alias로 extends 만드는기능
+type Animal = { name: string };
+type Cat = { age: number } & Animal; //interface로도 & 사용해서 만들수있음
+
+// interface & extends 와 intersection의 차이점
+// interface & extends는 복사해서 사용하는거고
+// intersection은 두타입을 전부 만족하는 타입이라는 뜻
+
+// 가장 큰차이점은 interface는 유연해서 중복선언(합쳐짐,extends 된다 생각하면됨)이 가능하고
+// type는 엄격해서 중복선언이 불가능하다.
+
+//extends 쓸때 중복 속성이 발생하면 에러로 잡아준다.
+//& 쓸때 중복 속성이 발생하면 미리 에러나 나지않는다.
+
+interface Prod {
+  brand: string;
+  serialNumber: number;
+  model: string[];
+}
+let product: Prod = {
+  brand: "Samsung",
+  serialNumber: 1360,
+  model: ["TV", "phone"],
+};
+
+interface Clean {
+  product: string;
+  price: number;
+}
+interface Shoppong extends Clean {
+  card?: boolean;
+}
+
+let basket: Shoppong[] = [
+  { product: "청소기", price: 7000, card: false },
+  { product: "삼다수", price: 800 },
+];
+interface MathObj {
+  plus: (a: number, b: number) => number;
+  minus: (a: number, b: number) => number;
+}
+let ObjectPrac: MathObj = {
+  plus(a, b) {
+    return a + b;
+  },
+  minus(a, b) {
+    return a - b;
+  },
+};
