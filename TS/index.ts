@@ -109,3 +109,53 @@ function MyFun6(parameter: string) {
 let MyFun7 = function () {
   throw new Error();
 };
+
+//==================================
+//public private protected static 같은 객체지향언어 문법제공함.
+class User {
+  public name = "kim";
+  //public 붙으면 모든 자식들이 이용가능하다.
+  //public키워드 안붙여도 자동으로 생성되어있어서
+  //name을 가져다쓰거나, 수정도 가능하다.
+  constructor(a) {
+    this.name = a;
+  }
+}
+let user1 = new User("park");
+user1.name = "하이";
+
+//private를 붙이면 자식들이 수정을 할수가 없어진다.
+//private 붙으면 class 안에서만 수정,이용가능하다.
+//private 키워드 사용예시
+class User2 {
+  public name: string;
+  private familyName: string;
+
+  constructor() {
+    this.name = "kim";
+    let hello = this.familyName + "안뇽";
+  }
+  changeSecret() {
+    this.familyName = "park";
+  }
+}
+let 유저2 = new User2();
+//유저2.familyName = "park"; //에러남
+유저2.changeSecret(); //가능
+
+//실수로 familyName 변경하는걸 막을 수 있음
+
+//만약 class 밖에서 꼭 변경해야하는 경우가 생긴다면??
+//class안에 familyName 변경 함수 제작
+
+//데이터를 외부로부터 보호하고 싶을때 자주 사용하는 패턴
+
+//========================================
+class Person {
+  constructor(public name: string) {
+    this.name;
+  }
+}
+let son = new Person("kim");
+console.log(son);
+// public키워드를 쓰면 this.=> 생략가능하다.
