@@ -122,3 +122,40 @@ class Person {
 let son = new Person("kim");
 console.log(son);
 // public키워드를 쓰면 this.=> 생략가능하다.
+//Generic
+//파라미터로 타입을 입력하는 함수
+//Generic장점
+//확장성이 있음
+function MyFun8(x) {
+    return x[0];
+}
+let a = MyFun8([4, 2]);
+let b = MyFun8(["4", "2"]);
+console.log(a);
+//타입 제한을 할수있음
+function MyFun9(x) {
+    //MyType이 우측에 있는 속성을 가지고있는지 체크
+    return x - 1;
+}
+let y = MyFun9(100);
+function MyFun10(x) {
+    return x.length;
+}
+let s = MyFun10(["100"]);
+function Prac1(a) {
+    console.log(a.length);
+}
+let q = Prac1("hello");
+let w = Prac1(["kim", "park"]);
+let data = '{"name" : "dog", "age" : 1 }';
+function Animals(x) {
+    return JSON.parse(x);
+}
+let result = Animals(data);
+console.log(result);
+//왼쪽에 있는 타입이 우측에 있는 string 타입을 가지고있는지 검사
+//조건식에는 extends가 들어간다.
+let e;
+let e2;
+let age1;
+let age2;

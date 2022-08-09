@@ -159,3 +159,60 @@ class Person {
 let son = new Person("kim");
 console.log(son);
 // public키워드를 쓰면 this.=> 생략가능하다.
+
+//Generic
+//파라미터로 타입을 입력하는 함수
+//Generic장점
+//확장성이 있음
+function MyFun8<MyType>(x: MyType[]): MyType {
+  return x[0];
+}
+let a = MyFun8<number>([4, 2]);
+let b = MyFun8<string>(["4", "2"]);
+console.log(a);
+
+//타입 제한을 할수있음
+function MyFun9<MyType extends number>(x: MyType) {
+  //MyType이 우측에 있는 속성을 가지고있는지 체크
+  return x - 1;
+}
+let y = MyFun9<number>(100);
+
+//커스텀 타입으로도 타입파라미터 제한가능
+interface LengthCheck {
+  length: number;
+}
+function MyFun10<MyType extends LengthCheck>(x: MyType) {
+  return x.length;
+}
+let s = MyFun10<string[]>(["100"]);
+
+function Prac1<Types extends string | string[]>(a: Types) {
+  console.log(a.length);
+}
+let q = Prac1<string>("hello");
+let w = Prac1<string[]>(["kim", "park"]);
+
+//========================================
+interface Animal {
+  name: string;
+  age: number;
+}
+let data = '{"name" : "dog", "age" : 1 }';
+
+function Animals<Type>(x: string): Type {
+  return JSON.parse(x);
+}
+let result = Animals<Animal>(data);
+console.log(result);
+
+//조건문으로 타입만들기 & infer
+type Age<T> = T extends string ? string : unknown;
+//왼쪽에 있는 타입이 우측에 있는 string 타입을 가지고있는지 검사
+//조건식에는 extends가 들어간다.
+let e: Age<string>;
+let e2: Age<number>;
+
+type FirstItem<T> = T extends any[] ? T[0] : any;
+let age1: FirstItem<string[]>;
+let age2: FirstItem<number>;
