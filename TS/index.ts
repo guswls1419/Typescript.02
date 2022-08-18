@@ -216,3 +216,7 @@ let e2: Age<number>;
 type FirstItem<T> = T extends any[] ? T[0] : any;
 let age1: FirstItem<string[]>;
 let age2: FirstItem<number>;
+
+let c: 3 = 3;
+//c=4
+const d = [5];
